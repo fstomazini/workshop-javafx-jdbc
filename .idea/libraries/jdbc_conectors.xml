@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="jdbc-conectors">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/../../../../java-libs/jdbc-conectors" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+    <jarDirectory url="file://$PROJECT_DIR$/../../../../java-libs/jdbc-conectors" recursive="false" />
+  </library>
+</component>
