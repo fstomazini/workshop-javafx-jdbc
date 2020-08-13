@@ -7,7 +7,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class ViewControler implements Initializable {
-gitgit pull
+
 
 
 
