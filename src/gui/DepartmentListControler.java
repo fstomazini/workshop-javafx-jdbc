@@ -1,5 +1,13 @@
 package gui;
 
+import gui.util.Alerts;
+import gui.util.Utils;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.layout.Pane;
+import javafx.stage.Modality;
 import model.entities.Department;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,6 +21,8 @@ import javafx.stage.Stage;
 import model.DepartmentService;
 import sample.Main;
 
+
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -37,8 +47,9 @@ public class DepartmentListControler implements Initializable {
 
 
     @FXML
-    public void onBtNewAction(){
-        System.out.println("onBtNewAction");
+    public void onBtNewAction(ActionEvent event){
+        Stage parentStage = Utils.currentStage(event);
+        createDialogForm("/gui/DepartmentForm.fxml", parentStage);
     }
 
     private void initializeNodes(){
@@ -68,6 +79,24 @@ public class DepartmentListControler implements Initializable {
         Stage stage = (Stage) Main.getMainScene().getWindow();
         tableViewDepartments.prefHeightProperty().bind(stage.heightProperty());
 
+    }
+
+    private void createDialogForm(String absoluteName, Stage parentStage){
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
+            Pane pane = loader.load();
+
+            Stage dialogStage = new Stage();
+            dialogStage.setTitle("Enter Department Data");
+            dialogStage.setScene(new Scene(pane));
+            dialogStage.setResizable(false);
+            dialogStage.initOwner(parentStage);
+            dialogStage.initModality(Modality.WINDOW_MODAL);
+            dialogStage.showAndWait();
+
+        }catch(IOException e){
+            Alerts.showAlert("IO Exception", "Error loading the view", e.getMessage(), Alert.AlertType.ERROR );
+        }
     }
 
 
