@@ -19,6 +19,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import model.DepartmentService;
 import model.SellerService;
 import model.entities.Seller;
 import sample.Main;
@@ -114,10 +115,10 @@ public class SellerListControler implements Initializable, DataChangeListener {
 
             SellerFormControler controller = loader.getController();
             controller.setEntity(obj);
-            controller.setService(new SellerService());
+            controller.setService(new SellerService(), new DepartmentService());
+            controller.loadAssociatedObjects();
             controller.subscribeDataChangeListener(this);
             controller.updateFormData();
-
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Enter Seller Data");
             dialogStage.setScene(new Scene(pane));
