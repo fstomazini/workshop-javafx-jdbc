@@ -1,5 +1,6 @@
 package gui;
 
+import gui.listners.DataChangeListener;
 import gui.util.Alerts;
 import gui.util.Utils;
 import javafx.event.ActionEvent;
@@ -27,7 +28,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class DepartmentListControler implements Initializable {
+public class DepartmentListControler implements Initializable, DataChangeListener {
 
     private DepartmentService service;
 
@@ -90,6 +91,7 @@ public class DepartmentListControler implements Initializable {
             DepartmentFormControler controller = loader.getController();
             controller.setEntity(obj);
             controller.setService(new DepartmentService());
+            controller.subscribeDataChangeListener(this);
             controller.updateFormData();
 
             Stage dialogStage = new Stage();
@@ -106,4 +108,8 @@ public class DepartmentListControler implements Initializable {
     }
 
 
+    @Override
+    public void onDataChange() {
+        updateTableView();
+    }
 }
