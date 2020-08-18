@@ -2,7 +2,7 @@ package gui;
 
 import db.DbException;
 import db.DbIntegrityException;
-//import gui.SellerFormControler;
+import gui.SellerFormControler;
 import gui.listners.DataChangeListener;
 import gui.util.Alerts;
 import gui.util.Utils;
@@ -20,7 +20,6 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import model.SellerService;
-import model.entities.Seller;
 import model.entities.Seller;
 import sample.Main;
 
@@ -109,7 +108,7 @@ public class SellerListControler implements Initializable, DataChangeListener {
     }
 
     private void createDialogForm(Seller obj,String absoluteName, Stage parentStage){
-      /*  try{
+       try{
             FXMLLoader loader = new FXMLLoader(getClass().getResource(absoluteName));
             Pane pane = loader.load();
 
@@ -129,7 +128,7 @@ public class SellerListControler implements Initializable, DataChangeListener {
 
         }catch(IOException e){
             Alerts.showAlert("IO Exception", "Error loading the view", e.getMessage(), Alert.AlertType.ERROR );
-        }*/
+        }
     }
 
     private void initEditButtons() {
